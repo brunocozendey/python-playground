@@ -1,5 +1,9 @@
 # -*- coding: cp1252 -*-
-'''Programa que lê 2 vetores de tamanho N e exibe o vetor soma dos dois'''
+'''
+Programa que lê 2 vetores de tamanho N e exibe o vetor soma dos dois
+Autor Bruno Cozendey - brunocozendey@gmail.com
+Criado em: 17/05/2018
+'''
 def ler():
     vetor_a = vetor_b = []
     while True:
