@@ -1,10 +1,11 @@
 # Pythonplayground
 This repository contains all my python scripts, which I developed.
-
+---
 #Lista 1
 Contém os exercícios da Lista 1 da matérias de fundamentos da computação (UERJ)
 A saber:
--Ex1:
+
+- Ex1:
 A prefeitura de uma cidade resolveu fazer uma pesquisa entre os seus trabalhadores.
 Para isso ela coletou alguns dados como idade, sexo (M ou F) e salário. Crie um
 programa que leia estes dados e que escreva ao final:
