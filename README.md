@@ -6,8 +6,7 @@ This repository contains all my python scripts, which I developed.
 
 # Lista 1
 
-Contém os exercícios da Lista 1 da matérias de fundamentos da computação (UERJ)
-A saber:
+Contém os exercícios da Lista 1 da matérias de fundamentos da computação.
 
 - Ex1:
 A prefeitura de uma cidade resolveu fazer uma pesquisa entre os seus trabalhadores.
