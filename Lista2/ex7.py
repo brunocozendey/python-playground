@@ -3,6 +3,9 @@
 Esse programa criptografa e decriptografa uma mensagem seguindo o seguinte padrão:
 Soma 2 ao código ascci de cada letra ou caracter.
 E no final exibi o texto lido, criptografado e decriptografado.
+
+Criado por: Bruno Cozendey
+Em: 19/05/2018
 '''
 def ler():
     while True:
