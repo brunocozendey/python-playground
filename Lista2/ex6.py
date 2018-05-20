@@ -2,6 +2,8 @@
 '''
 O programa conta a quantidade de vogais e de consoantes de uma string. 
 O usuário pode usar letras maiúsculas e/ou minúsculas
+Criado por: Bruno Cozendey
+Em: 19/05/2018
 '''
 def ler():
     while True:
