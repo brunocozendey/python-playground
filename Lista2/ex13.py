@@ -1,8 +1,10 @@
 # -*- coding: cp1252 -*-
 '''
-Elabore um programa que leia o nome e a idade de um grupo indeterminado de pessoas. Determinar o
+O programa lê o nome e a idade de um grupo indeterminado de pessoas e determina o
 maior nome do grupo e a media das idades.
 
+Criado por: Bruno Cozendey
+Em: 22/05/2018
 '''
 
 def ler():
