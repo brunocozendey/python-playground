@@ -13,6 +13,6 @@ def mdc(x,y):
     for i in reversed(range(-b,b)):
       if ((b%i == 0) and (a%i == 0)):
         return i
-    return "Não existe mdc"
+    return 1
 
 print(mdc(35,-15))
