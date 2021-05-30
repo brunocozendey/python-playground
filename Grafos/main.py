@@ -249,17 +249,46 @@ def get_coloracao(g):
         c[i] = min(aux_cores)
     return c
 
+
+def is_conexo(g):
+    vertices = g.get_vertices()
+    for v in vertices:
+        grafos_conexos = componentes_conexas(g.get_dict(),v)
+        for conj_vertices in grafos_conexos:
+            if conj_vertices.sort() == vertices.sort():
+                return True
+    else:
+        return False  
+    
+def have_grau_par(g):
+    vertices = g.get_vertices()
+    for v in vertices:
+        grau = len(get_neighbor(g.get_arestas(),v))
+        if grau%2 != 0:
+            return False
+    return True
+
+def is_euleriano(g, nome_grafo):
+    # G é conexo e cada vertice de G tem grau par
+    if(is_conexo(g) and have_grau_par(g)):
+        print("O grafo '{}' é Euleriano".format(nome_grafo))
+    else:
+        print("O grafo '{}' NÃO é Euleriano".format(nome_grafo))
+
 def init():
     arestas = [(1,2),(1,4),(2,1),(2,3),(3,2),(3,4),(4,1),(4,3)]
     grafo = Grafo(arestas)
     MA = grafo_to_matriz(grafo)
     imprimir_matriz(MA)
     criar_arquivo_grafo("ex1", grafo, MA)
-    arquivo = carrega_arquivo("ex1")
-    estrutura = ast.literal_eval(arquivo['estrutura'])
-    MA = arquivo['matriz']
-    grafo = Grafo(grafo_to_arestas(estrutura)) 
-    imprimir_matriz(MA)
+    try:
+        arquivo = carrega_arquivo("ex1")
+        estrutura = ast.literal_eval(arquivo['estrutura'])
+        MA = arquivo['matriz']
+        grafo = Grafo(grafo_to_arestas(estrutura)) 
+        imprimir_matriz(MA)
+    except:
+        print("ERRO: Problema ao carregar o arquivo!")
 #Ex2
     grafo21 = {1:{2,3}, 2:{1,3}, 3:{1,2}, 4:{5}, 5:{4,6}, 6:{5}, 7:{7}, 8:{9,10}, 9:{10,11}, 10:{8,9,12}, 11:{9}, 12:{10}}
     grafo22 = {1:{2,5}, 2:{1,3}, 3:{2, 4}, 4:{3,5}, 5:{1,4}, 6:{6}, 7:{7}, 8:{9,11}, 9:{8,10}, 10:{9,11}, 11:{8,10,12}, 12:{11}}
@@ -283,11 +312,14 @@ def main(argv):
         option = menu().lower()
         if option == "1":
             file_name = input("Digite o nome do grafo:")
-            arquivo = carrega_arquivo(file_name)
-            estrutura = ast.literal_eval(arquivo['estrutura'])
-            MA = arquivo['matriz']
-            grafo = Grafo(grafo_to_arestas(estrutura)) 
-            imprimir_matriz(MA)
+            try:
+                arquivo = carrega_arquivo(file_name)
+                estrutura = ast.literal_eval(arquivo['estrutura'])
+                MA = arquivo['matriz']
+                grafo = Grafo(grafo_to_arestas(estrutura)) 
+                imprimir_matriz(MA)
+            except:
+                print("ERRO: Problema ao carregar o arquivo!")
 
         elif option == "2":
             MA = criar_grafo()
@@ -295,10 +327,13 @@ def main(argv):
 
         elif option == "3":
             file_name = input("Digite o nome do grafo:")
-            arquivo = carrega_arquivo(file_name)
-            estrutura = ast.literal_eval(arquivo['estrutura'])
-            MA = arquivo['matriz']
-            imprime_calcula_componentes_e_media(estrutura)
+            try:
+                arquivo = carrega_arquivo(file_name)
+                estrutura = ast.literal_eval(arquivo['estrutura'])
+                MA = arquivo['matriz']
+                imprime_calcula_componentes_e_media(estrutura)
+            except:
+                print("ERRO: Problema ao carregar o arquivo!")
         elif option == "4":
             #Gerar matriz de adjacência do grafo de Micielski
             while True:
@@ -315,20 +350,32 @@ def main(argv):
                 
         elif option == "5":
             file_name = input("Digite o nome do grafo:")
-            arquivo = carrega_arquivo(file_name)
-            estrutura = ast.literal_eval(arquivo['estrutura'])
-            grafo = Grafo(grafo_to_arestas(estrutura))
-            print("vetor coloração: ",get_coloracao(grafo))
-
+            try:
+                arquivo = carrega_arquivo(file_name)
+                estrutura = ast.literal_eval(arquivo['estrutura'])
+                grafo = Grafo(grafo_to_arestas(estrutura))
+                print("vetor coloração: ",get_coloracao(grafo))
+            except:
+                print("ERRO: Problema ao carregar o arquivo!")
 
         elif option == "6":
-            file_name = input("Digite o nome do grafo:")
-            arquivo = carrega_arquivo(file_name)
-            estrutura = ast.literal_eval(arquivo['estrutura'])
-            grafo = Grafo(grafo_to_arestas(estrutura))
+            try:
+                file_name = input("Digite o nome do grafo:")
+                arquivo = carrega_arquivo(file_name)
+                estrutura = ast.literal_eval(arquivo['estrutura'])
+                grafo = Grafo(grafo_to_arestas(estrutura))
+                is_euleriano(grafo, file_name)
+            except:
+                print("ERRO: Problema ao carregar o arquivo!")
+            
+            
             
         elif option == 's':
-            break   
+            break
+        if(input("Se deseja sair pressione s ou pressione qualquer outra tecla para continuar.").lower()=='s'):
+            break
+
+
 
 if __name__ == "__main__":
    main(sys.argv[1:])   

@@ -1,5 +1,5 @@
 #Matriz grafo completo
-from main import criar_matriz_zeros, grafo_to_matriz, matriz_to_grafo
+from main import componentes_conexas, criar_matriz_zeros, grafo_to_matriz, matriz_to_grafo
 from Grafo import Grafo
 def matriz_grafo_kn(n):
     M = criar_matriz_zeros(n)
@@ -78,11 +78,29 @@ def get_coloracao(g):
         
 
 
+def is_conexo(g):
+    vertices = g.get_vertices()
+    for v in vertices:
+        grafos_conexos = componentes_conexas(g.get_dict(),v)
+        for conj_vertices in grafos_conexos:
+            if conj_vertices.sort() == vertices.sort():
+                return True
+    else:
+        return False  
+    
+def have_grau_par(g):
+    vertices = g.get_vertices()
+    for v in vertices:
+        grau = len(get_neighbor(g.get_arestas(),v))
+        if grau%2 != 0:
+            return False
+    return True
 
-
-
+def is_euleriano(g):
+    # G é conexo e cada vertice de G tem grau par
+    return is_conexo(g) and have_grau_par(g)
     
 
-arestas = [(1,2),(1,4),(1,3),(2,1),(2,3),(3,2),(3,1),(3,4),(4,1),(4,3)]
+arestas = [(1,2),(1,4),(2,1),(2,3),(3,2),(3,4),(4,1),(4,3)]
 grafo = Grafo(arestas)
-print(get_coloracao(grafo))
+print(is_euleriano(grafo))
