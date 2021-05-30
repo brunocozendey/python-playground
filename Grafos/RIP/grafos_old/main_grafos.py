@@ -1,10 +1,10 @@
-#!/usr/bin/python
-import sys, getopt,json
+#!/bin/env python3
+import sys, getopt
 import numpy as np
 from Grafo import Grafo
-import ast
 
 barra = "="*30
+
 def menu():
     print(barra)
     print("|       IMPRIME GRAFOS       |")
@@ -46,7 +46,7 @@ def cria_matriz_adjacencia(n):
         for j in range(i,n):
             while True:
                 try:
-                    M[i][j] = int(input('Digite o valor 0/1 da posiçõa [{}][{}] da matriz adjacência:'.format(i,j)))
+                    M[i][j] = int(input('Digite o valor 0/1 da posição [{}][{}] da matriz adjacência:'.format(i,j)))
                     if M[i][j] in [0,1]:
                         break
                     else:

@@ -6,7 +6,7 @@ class Grafo():
 
     def __init__(self, arestas, direcionado=False):
         """Inicializa as estruturas base do grafo."""
-        self.adj = defaultdict(set)
+        self.adj = defaultdict(list)
         self.direcionado = direcionado
         self.adiciona_arestas(arestas)
 
@@ -18,18 +18,8 @@ class Grafo():
 
     def get_arestas(self):
         """ Retorna a lista de arestas do grafo. """
-        '''arestas = []
-        for k in self.adj.keys(): 
-            for v in self.adj[k]:
-                if v == {}:
-                    arestas.append((k,k))
-                else:
-                    arestas.append((k,v))
-        return arestas'''
         return [(k, v) for k in self.adj.keys() for v in self.adj[k]]
-            
-    def get_dict(self):
-        return self.adj
+
 
     def adiciona_arestas(self, arestas):
         """ Adiciona arestas ao grafo. """
@@ -39,10 +29,10 @@ class Grafo():
 
     def adiciona_arco(self, u, v):
         """ Adiciona uma ligação (arco) entre os nodos 'u' e 'v'. """
-        self.adj[u].add(v)
+        self.adj[u].append(v)
         # Se o grafo é não-direcionado, precisamos adicionar arcos nos dois sentidos.
         if not self.direcionado:
-            self.adj[v].add(u)
+            self.adj[v].append(u)
 
 
     def existe_aresta(self, u, v):
@@ -56,7 +46,6 @@ class Grafo():
 
     def __str__(self):
         #return '{}({})'.format(self.__class__.__name__, dict(self.adj))
-        #return "{}".format(dict(self.adj))
         return "{}".format(dict(self.adj))
 
 
