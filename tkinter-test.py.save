@@ -1,0 +1,10 @@
+#!/usr/bin/env/python
+# -*- coding: utf-8 -*-
+from tkinter import *   #importa a bibioteca do TKinter
+ 
+root = Tk()             #cria a aplicação raiz. 
+w = Label(root, text="Teste TKinter!")    #cria um label com o texto especificado
+w.pack()                                      #insere na tela
+B = Button(root, text="BTN").grid()
+r
+oot.mainloop()                               #inicializa o loop
